@@ -1,15 +1,15 @@
-var express     = require("express"),
-    app         = express(),
-    bodyParser  = require("body-parser"),
-    mongoose    = require("mongoose"),
-    passport    = require("passport"),
-    flash       = require("connect-flash"),
+var express         = require("express"),
+    app             = express(),
+    bodyParser      = require("body-parser"),
+    mongoose        = require("mongoose"),
+    passport        = require("passport"),
+    flash           = require("connect-flash"),
     LocalStrategy   = require("passport-local"),
-    methodOverride = require("method-override"),
-    Campground  = require("./models/campground"),
-    Comment     = require("./models/comment"),
-    User        = require("./models/user"),
-    seedDB      = require("./seeds");
+    methodOverride  = require("method-override"),
+    Campground      = require("./models/campground"),
+    Comment         = require("./models/comment"),
+    User            = require("./models/user"),
+    seedDB          = require("./seeds");
     // Comment     = require("./models/comments")
 
 //REQUIRING ROUTES    
@@ -17,13 +17,10 @@ var commentRoutes    = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes      = require("./routes/index");
 
+var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp_v13";
+mongoose.connect(url);
 
-
-mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true }); //create yelpcamp db inside mongodb
-// mongoose.connect("mongodb://Ben:therealmccoy&buster26@ds143293.mlab.com:43293/yelpcamp2018",  { useNewUrlParser: true });
-
-
-
+// { useNewUrlParser: true }
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
